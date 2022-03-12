@@ -1,9 +1,33 @@
 {% extends "ventas/base.html" %}
 
 {% load static %}
+
+{% block js %}
+<script>
+    function eliminarProducto(id){
+        
+        Swal.fire({
+            "title":"¿Estás seguro?",
+            "text":"esta acción no se puede deshacer",
+            "icon":"question",
+            "showCancelButton":true,
+            "cancelButtonText":"No, cancelar",
+            "confirmButtonText":"Si, eliminar",
+            "reverseButtons":true,
+            "confirmButtonColor":"#dc3545"
+        }) 
+        .then(function(result){
+            if(result.isConfirmed){
+                window.location.href="/eliminar-producto/"+id+"/"
+            }
+        })
+    }
+</script>
+{% endblock %}
 {% block headers%}
 <title>Listar</title>
 {% endblock %}
+
 
 {% block content%}
 <table>
@@ -13,6 +37,8 @@
         <th>Descripcion</th>
         <th>Marca</th>
         <th>Imagen</th>
+        <th>Modificar</th>
+
     </tr>
 
     {% for p in productos%}
@@ -23,6 +49,10 @@
         <td>{{p.descripcion | title}}</td>
         <td>{{p.marca | title}}</td>
         <td><img src="{{p.imagen.url}}" alt=""></td>
+        <td>
+            <a href="{% url 'modificar_producto' p.id %}" class="btn btn-dark">Modificar</a>
+            <a href="#" onclick="eliminarProducto({{ p.id }})" class="btn btn-danger">Eliminar</a>
+        </td>
 
     </tr>
     {% endfor %}

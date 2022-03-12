@@ -1,0 +1,33 @@
+{% extends "ventas/base.html" %}
+{% load static %}
+
+{% block headers%}
+<title>Modificar</title>
+{% endblock %}
+
+{% block content %}
+{% load crispy_forms_tags %}
+
+<div class="row my-5">
+
+    <div class="col-12 col-md-6 offset-md-3">
+        <h2 class="text-center">Modificando productos</h2>
+        <hr>
+        <form action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form | crispy }}
+
+            <div class="d-flex justify-content-end">
+            <input type="reset" value="Cancelar" class="btn btn-danger">
+            &nbsp;
+            <input type="submit" value="Editar" class="btn btn-secondary">
+
+            </div>
+
+        </form>
+        {{mensaje}}
+    </div>
+</div>
+
+
+{% endblock %}

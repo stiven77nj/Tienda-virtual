@@ -1,5 +1,5 @@
-from django.shortcuts import render
-
+from django.shortcuts import render,redirect,get_object_or_404
+from django.contrib import messages
 # Importacion del modelo producto
 from .models import Producto
 from .forms import ContactoForm
@@ -37,7 +37,7 @@ def agregar_producto(request):
         formulario =ProductoForm(data=request.POST ,files=request.FILES)
         if formulario.is_valid():
             formulario.save()
-            data["mensaje"]= "guardado correctamente"
+            messages.success(request,"Guardado correctamente")
         else:
             data["form"]=formulario
 
@@ -51,3 +51,26 @@ def listar_productos(request):
         'productos':productos
     }
     return render(request,'ventas/producto/listar.html',data)
+
+def modificar_producto(request,id):
+
+    producto= get_object_or_404(Producto,id=id)
+    data={
+        'form': ProductoForm(instance=producto)
+    }
+
+    if request.method == 'POST':
+        formulario=ProductoForm(data=request.POST, instance=producto, files=request.FILES)
+        if formulario.is_valid():
+            formulario.save()
+            messages.success(request, "Modificado Correctamente")
+            return redirect(to="listar_productos")
+            data["form"]=formulario
+
+    return render(request,'ventas/producto/modificar.html',data)
+
+def eliminar_producto(request,id):
+    producto=get_object_or_404(Producto,id=id)
+    producto.delete()
+    messages.success(request, "Eliminado Correctamente")
+    return redirect(to="listar_productos")
