@@ -1,0 +1,44 @@
+.icons a, .icons svg {
+    color: #fff;
+    margin-left: 20px;
+    line-height: 40px;
+    cursor: pointer;
+  }
+  p{
+      font-family: Georgia, 'Times New Roman', Times, serif;
+  
+      font-size: 15px;
+  }
+  .colapse{
+      background: none;
+      border: none;
+      color: #fff;
+      font-family: Georgia, 'Times New Roman', Times, serif;
+      font-size: 15px;
+  
+  }
+  .collapse{
+      margin: 10px 10px 0 0;
+      padding: 10px;
+      border-bottom:2px solid gray;
+      font-family: Georgia, 'Times New Roman', Times, serif;
+  
+  }
+  .red{
+      /* background: red; */
+      width: 35px;
+      height: 60px;
+  }
+
+  
+/* .contenedor-img {
+    width: 50%;
+    img {
+        width: 100%;
+    }
+}
+.contenedor-compra {
+    width: 50%;
+    text-align: center;
+} */
+/*# sourceMappingURL=estilos.css.map */
