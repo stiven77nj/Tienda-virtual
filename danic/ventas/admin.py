@@ -1,7 +1,7 @@
 from re import search
 from django.contrib import admin
 # Se importan los modelos
-from .models import Marca, Producto
+from .models import Marca, Producto, Contacto
 
 # Register your models here.
 
@@ -15,3 +15,4 @@ class ProductoAdmin(admin.ModelAdmin):
 
 admin.site.register(Marca) # Modelo Marca
 admin.site.register(Producto, ProductoAdmin) # Modelo Producto
+admin.site.register(Contacto) # Modelo Producto

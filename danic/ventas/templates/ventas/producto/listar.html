@@ -1,0 +1,31 @@
+{% extends "ventas/base.html" %}
+
+{% load static %}
+{% block headers%}
+<title>Listar</title>
+{% endblock %}
+
+{% block content%}
+<table>
+    <tr>
+        <th>Nombre</th>
+        <th>Precio</th>
+        <th>Descripcion</th>
+        <th>Marca</th>
+        <th>Imagen</th>
+    </tr>
+
+    {% for p in productos%}
+
+    <tr>
+        <td>{{p.nombre | title}}</td>
+        <td>{{p.precio }}</td>
+        <td>{{p.descripcion | title}}</td>
+        <td>{{p.marca | title}}</td>
+        <td><img src="{{p.imagen.url}}" alt=""></td>
+
+    </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}
