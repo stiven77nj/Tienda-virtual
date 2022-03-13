@@ -21,6 +21,9 @@ def home(request):
     }
     return render(request, 'ventas/home.html', data)
 
+def cuenta(request):
+    return render(request, 'ventas/cuenta.html')
+
 def celulares(request):
     productos = Producto.objects.filter(categoria_id=1)
     data = { # Se traen los productos de la base de datos
