@@ -21,6 +21,20 @@ def home(request):
     }
     return render(request, 'ventas/home.html', data)
 
+def celulares(request):
+    productos = Producto.objects.filter(categoria_id=1)
+    data = { # Se traen los productos de la base de datos
+        'productos': productos
+    }
+    return render(request, 'ventas/categorias/celulares.html', data)
+
+def ventiladores(request):
+    productos = Producto.objects.filter(categoria_id=2)
+    data = { # Se traen los productos de la base de datos
+        'productos': productos
+    }
+    return render(request, 'ventas/categorias/ventiladores.html', data)
+
 @login_required # Debe estar registrado para contactar
 # Vista de la pagina de contacto
 def contacto(request):

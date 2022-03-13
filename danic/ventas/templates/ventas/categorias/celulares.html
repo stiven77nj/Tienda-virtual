@@ -2,22 +2,18 @@
 {% load static %}
 
 {% block headers %}
-<title>Home</title>
+<title>Celulares</title>
 {% endblock %}
 
 {% block content %}
-{% comment %} Comienzo del main {% endcomment %}
-<main class="container">
-    {% load humanize %} {% comment %} Aparece la "coma" en el precio de los productos {% endcomment %}
-    <!-- Galeria -->
-    <div class="row py-5">
-        <div class="col">
-            <div class="border-bottom">
-                <h1 class="text-center">Productos</h1>
-            </div>
-        </div>
+
+<div class="row my-5">
+    {% load humanize %}
+    <div class="col-12 col-md-6 offset-md-3">
+        <h2 class="text-center">Celulares</h2>
+        <hr>
     </div>
-    <!-- Contenedor de los productos destacados -->
+
     <div class="row">
         {% for p in productos %} {% comment %} Se recorre toda la lista de productos {% endcomment %}
         <div class="col-12 col-sm-6 col-lg-3 mb-4">
@@ -87,9 +83,6 @@
         </div>
         {% endfor %}
     </div>
-</main>
-{% comment %} Final del main {% endcomment %}
-
-
+</div>
 
 {% endblock %}

@@ -21,6 +21,7 @@ class ProductoForm(forms.ModelForm):
         model=Producto
         fields= '__all__'
 
+
 # Formulario de registro
 class CustomUserCreationForm(UserCreationForm):
 

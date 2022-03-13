@@ -30,22 +30,24 @@
                             <a href="#" class="nav-link dropdown-toggle" id="submenuProductos" role="button" data-bs-toggle="dropdown" aria-expanded="false">Productos</a>
                             <!-- Subelementos -->
                             <ul class="dropdown-menu" aria-labelledby="submenuProductos">
-                                <li><a href="Pceulares.html" class="dropdown-item">Celulares</a></li>
+                                <li><a href="{% url 'celulares' %}" class="dropdown-item">Celulares</a></li>
                                 <li><a href="Pestufas.html" class="dropdown-item">Estufas</a></li>
                                 <li><a href="Pfreidoras.html" class="dropdown-item">Freidoras</a></li>
                                 <li><a href="Plavadoras" class="dropdown-item">Lavadoras</a></li>
                                 <li><a href="Phornos.html" class="dropdown-item">Microondas</a></li>
                                 <li><a href="Pneveras.html" class="dropdown-item">Neveras</a></li>
                                 <li><a href="Ptelevisores.html" class="dropdown-item">Televisores</a></li>
-                                <li><a href="Pventiladores.html" class="dropdown-item">Ventiladores</a></li>
+                                <li><a href="{% url 'ventiladores' %}" class="dropdown-item">Ventiladores</a></li>
                             </ul>
                         </li>
                         <li class="nav-item">
                             <a href="{% url 'contacto' %}" class="nav-link">Contacto</a>
                         </li>
+                        {% if perms.ventas.change_producto %}
                         <li class="nav-item">
                             <a href="{% url 'listar_productos' %}" class="nav-link">Catálogo</a>
                         </li>
+                        {% endif %}
                         {% if perms.ventas.add_producto %}
                         <li class="nav-item">
                             <a href="{% url 'agregar_producto' %}" class="nav-link">Agregar Productos</a>
