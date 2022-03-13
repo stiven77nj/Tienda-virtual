@@ -143,7 +143,7 @@ def listar_productos(request):
     page = request.GET.get('page', 1) # De la url se obtiene la variable page
 
     try:
-        paginator = Paginator(productos, 2)
+        paginator = Paginator(productos, 5)
         productos = paginator.page(page)
     except:
         raise Http404
@@ -221,7 +221,7 @@ def marca(request):
     page = request.GET.get('page', 1) # De la url se obtiene la variable page
 
     try:
-        paginator = Paginator(marca, 2)
+        paginator = Paginator(marca, 5)
         marca = paginator.page(page)
     except:
         raise Http404
