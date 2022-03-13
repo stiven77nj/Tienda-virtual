@@ -35,6 +35,48 @@ def ventiladores(request):
     }
     return render(request, 'ventas/categorias/ventiladores.html', data)
 
+def estufas(request):
+    productos = Producto.objects.filter(categoria_id=3)
+    data = { # Se traen los productos de la base de datos
+        'productos': productos
+    }
+    return render(request, 'ventas/categorias/estufas.html', data)
+
+def freidoras(request):
+    productos = Producto.objects.filter(categoria_id=4)
+    data = { # Se traen los productos de la base de datos
+        'productos': productos
+    }
+    return render(request, 'ventas/categorias/freidoras.html', data)
+
+def lavadoras(request):
+    productos = Producto.objects.filter(categoria_id=5)
+    data = { # Se traen los productos de la base de datos
+        'productos': productos
+    }
+    return render(request, 'ventas/categorias/lavadoras.html', data)
+
+def microondas(request):
+    productos = Producto.objects.filter(categoria_id=6)
+    data = { # Se traen los productos de la base de datos
+        'productos': productos
+    }
+    return render(request, 'ventas/categorias/microondas.html', data)
+
+def televisores(request):
+    productos = Producto.objects.filter(categoria_id=7)
+    data = { # Se traen los productos de la base de datos
+        'productos': productos
+    }
+    return render(request, 'ventas/categorias/televisores.html', data)
+
+def neveras(request):
+    productos = Producto.objects.filter(categoria_id=8)
+    data = { # Se traen los productos de la base de datos
+        'productos': productos
+    }
+    return render(request, 'ventas/categorias/neveras.html', data)
+
 @login_required # Debe estar registrado para contactar
 # Vista de la pagina de contacto
 def contacto(request):
