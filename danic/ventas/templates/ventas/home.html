@@ -48,6 +48,7 @@
             </div>
         </div>
     </div>
+    
     <!-- Contenedor de los productos destacados -->
     <div class="row">
         {% for p in productos %} {% comment %} Se recorre toda la lista de productos {% endcomment %}
@@ -63,7 +64,7 @@
 
                     <div class="d-flex flex-row justify-content-between align-items-center">
                         <a href="#" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#mi-modal{{ p.id }}">Detalles</a>
-                        <a href="#" class="btn btn-secondary">Agregar</a>
+                        <a href="{% url 'carro:agregar' p.id %}" class="btn btn-secondary">Agregar</a>
                         
 
                         <!-- Ventana modal -->
@@ -121,6 +122,8 @@
 </main>
 {% comment %} Final del main {% endcomment %}
 
+
+{% comment %} {% include "ventas/carro/widget.html" %} {% endcomment %}
 
 
 {% endblock %}

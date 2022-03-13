@@ -21,6 +21,7 @@ def home(request):
     }
     return render(request, 'ventas/home.html', data)
 
+
 def cuenta(request):
     return render(request, 'ventas/cuenta.html')
 
