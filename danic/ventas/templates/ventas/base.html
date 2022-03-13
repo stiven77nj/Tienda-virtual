@@ -46,9 +46,26 @@
                         <li class="nav-item">
                             <a href="{% url 'listar_productos' %}" class="nav-link">Catálogo</a>
                         </li>
+                        {% if perms.ventas.add_producto %}
                         <li class="nav-item">
                             <a href="{% url 'agregar_producto' %}" class="nav-link">Agregar Productos</a>
                         </li>
+                        {% endif %}
+                        {% if user.is_authenticated %}
+                        <li class="nav-item">
+                            <a href="{% url 'logout' %}"  class="nav-link">Cerrar Sesion</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#"  class="nav-link">@{{ user.username }}</a>
+                        </li>
+                        {% else %}
+                        <li class="nav-item">
+                            <a href="{% url 'login' %}" class="nav-link">Iniciar Sesion</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{% url 'registro' %}" class="nav-link">Registrate</a>
+                        </li>
+                        {% endif %}
                     </ul>
                     <!-- Formulario de busqueda -->
                     <!-- <form action="" class="d-flex">
