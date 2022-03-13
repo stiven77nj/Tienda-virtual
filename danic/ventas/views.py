@@ -1,9 +1,10 @@
 from django.shortcuts import render,redirect,get_object_or_404
 from django.contrib import messages
 # Importacion del modelo producto
-from .models import Producto
+from .models import Producto,Marca
+from django.contrib.auth.models import User
 # Importacion de los formularios
-from .forms import ContactoForm
+from .forms import ContactoForm, MarcaForm
 from .forms import ProductoForm
 from .forms import CustomUserCreationForm
 # Importacion de la clase Paginator
@@ -22,7 +23,31 @@ def home(request):
     return render(request, 'ventas/home.html', data)
 
 def cuenta(request):
-    return render(request, 'ventas/cuenta.html')
+    return render(request,'ventas/cuenta.html')
+
+def modificar_cuenta(request,id):
+    
+    usuario= get_object_or_404(User, id=id)
+    data={
+        'form': CustomUserCreationForm(instance=usuario)
+    }
+
+    if request.method == 'POST':
+        formulario=CustomUserCreationForm(data=request.POST, instance=usuario, files=request.FILES)
+        if formulario.is_valid():
+            formulario.save()
+            messages.success(request, "Modificado Correctamente")
+            return redirect(to="home")
+            data["form"]=formulario
+
+    return render(request, 'registration/modificar_cuenta.html',data)
+
+def eliminar_cuenta(request,id):
+    usuario=get_object_or_404(User,id=id)
+    usuario.delete()
+    messages.success(request, "Eliminado Correctamente")
+    return redirect(to="home")
+
 
 def celulares(request):
     productos = Producto.objects.filter(categoria_id=1)
@@ -173,3 +198,44 @@ def registro(request):
         data['form'] = formulario
 
     return render(request, 'registration/registro.html', data)
+
+
+
+def agregar_marca(request):
+    data={
+        'form':MarcaForm()
+    }
+    if request.method == 'POST':
+        formulario =MarcaForm(data=request.POST ,files=request.FILES)
+        if formulario.is_valid():
+            formulario.save()
+            messages.success(request,"Guardado correctamente")
+        else:
+            data["form"]=formulario
+
+    return render(request, 'ventas/producto/agregar_marca.html',data)
+
+
+def marca(request):
+    marca= Marca.objects.all()
+    page = request.GET.get('page', 1) # De la url se obtiene la variable page
+
+    try:
+        paginator = Paginator(marca, 2)
+        marca = paginator.page(page)
+    except:
+        raise Http404
+
+    data={
+        'entity': marca,
+        'paginator': paginator
+    }
+    
+    return render(request,'ventas/marca.html',data)
+
+
+def eliminar_marca(request,id):
+    marca=get_object_or_404(Marca,id=id)
+    marca.delete()
+    messages.success(request, "Eliminado Correctamente")
+    return redirect(to="home")

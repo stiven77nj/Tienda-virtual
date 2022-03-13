@@ -1,12 +1,80 @@
 {% extends 'ventas/base.html' %}
 {% load static %}
 
+
+{% block js %}
+<script>
+    function eliminarCuenta(id){
+        
+        Swal.fire({
+            "title":"¿Estás seguro?",
+            "text":"esta acción no se puede deshacer",
+            "icon":"question",
+            "showCancelButton":true,
+            "cancelButtonText":"No, cancelar",
+            "confirmButtonText":"Si, eliminar",
+            "reverseButtons":true,
+            "confirmButtonColor":"#dc3545"
+        }) 
+        .then(function(result){
+            if(result.isConfirmed){
+                window.location.href="/eliminar-cuenta/"+id+"/"
+            }
+        })
+    }
+</script>
+{% endblock %}
+
 {% block headers %}
 <title>Cuenta</title>
 {% endblock %}
 
 {% block content %}
+<div class="row">
+    
+    <div class="card m-auto w-25 my-5" style="width: 20rem;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="90" height="90" fill="currentColor" class="bi bi-person-circle m-auto my-3" viewBox="0 0 16 16">
+            <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+            <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+        </svg>
+        {% comment %} <img src="{% static 'img/user.png' %}" class="card-img-top" alt="..."> {% endcomment %}
 
+        {% comment %} <div class="card-body">
+        <h5 class="card-title">Usuario:  {{ user.username }}</h5>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        </div> {% endcomment %}
 
+        <table class="table table-striped my-4">
+            <tr class="table-secondary">
+                <td >Usuario: </td>
+                <td class="d-flex justify-content-center">{{ user.username }}</td>
+                
+            </tr>    
+            <tr class="table-light">
+                <td >Nombre: </td>
+                <td class="d-flex justify-content-center">{{ user.first_name }}</td>
+                
+                
+            </tr>
+            <tr class="table-secondary">
+                <td >Apellido: </td>
+                <td class="d-flex justify-content-center">{{user.last_name}}</td>
+                
+                
+            </tr>
+            <tr class="table-light">
+                <td >Email: </td>
+                <td class="d-flex justify-content-center">{{ user.email }}</td>
+                
+                
+            </tr>
+        </table>
 
+        <div class="card-body m-auto">
+        <a href="{% url 'modificar_cuenta' user.id %}" class="card-link btn btn-primary">Editar</a>
+        <a href="#" onclick="eliminarCuenta({{ user.id }})" class="btn btn-danger">Eliminar</a>
+        </div>
+    </div>
+    
+</div>
 {% endblock %}
